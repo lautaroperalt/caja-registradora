@@ -61,6 +61,46 @@ do
             decimal descuentoTotal = cantidadTotalVentas * porcentajeDescuento;
             decimal subtotalConDescuento = cantidadTotalVentas - descuentoTotal;
             Console.WriteLine($"Descuento aplicado por monto: (${descuentoTotal}) => {porcentajeDescuento * 100}%");
+            
+            Console.WriteLine();
+Console.WriteLine("Seleccione un medio de pago: ");
+Console.WriteLine("1. Efectivo (10% de descuento)"); Console.WriteLine("2. Debito"); Console.WriteLine("2. Credito (15% de recargo)");
+string medioDePago = Console.ReadLine();
+
+            decimal ajustePago = 0;
+
+            switch (medioDePago)
+            {
+                case "1":
+                    ajustePago = -(subtotalConDescuento * DescuentoMayor);
+                    Console.WriteLine("Pago en efectivo seleccionado, aplicando un 10% adicional de descuento");
+                    break;
+
+                case "2":
+                    ajustePago = 0m;
+                    Console.WriteLine("Pago en debito seleccionado, sin cambios en el precio");
+                    break;
+
+                case "3":
+                    ajustePago = subtotalConDescuento * RecargoCredito;
+                    Console.WriteLine("Pago en credito seleccionado, aplicando un 15% de recargo");
+                    break;
+
+                default:
+                    Console.WriteLine("Medio de pago invalido");
+                    break;
+            }
+            decimal totalFinal = subtotalConDescuento + ajustePago;
+
+            Console.WriteLine($"Subtotal inicial: ${cantidadTotalVentas}");
+            Console.WriteLine($"Descuento por monto: -{DescuentoMayor * 100}%");
+            Console.WriteLine($"Ajuste medio de pago: ${ajustePago}");
+            Console.WriteLine($"El precio final a pagar es: ${totalFinal}");
+
+            break;
+
+            default:
+                Console.WriteLine("Opcion invalida. Intentar nuevamente");
             break;
         }
     }
