@@ -12,6 +12,7 @@ int cantidadProductos = 0;
 string opcion;
 const decimal DescuentoMayor = 0.10m;
 const decimal DescuentoMenor = 0.10m;
+const decimal RecargoCredito = 0.15m;
 
 
 do
@@ -40,28 +41,27 @@ do
                     Console.WriteLine("Resumen ventas: ");
                 Console.WriteLine($"Cantidad de productos agregados {cantidadProductos}");
                 Console.WriteLine($"Subtotal de ventas {cantidadTotalVentas}");
-
+                decimal porcentajeDescuento = 0m;
+    
                     if (cantidadTotalVentas > 5000)
                         {
-                            cantidadTotalVentas -= cantidadTotalVentas * DescuentoMayor;
-                            Console.WriteLine($"El total a pagar es {cantidadTotalVentas}, con un descuento del 10% aplicado");
-                        }
+                             porcentajeDescuento = DescuentoMayor;
+            }
 
-                    else if (cantidadTotalVentas < 5000 && cantidadTotalVentas > 2000)
+                    else if (cantidadTotalVentas > 2000)
                         {
-                            cantidadTotalVentas -= cantidadTotalVentas * DescuentoMenor;
-                            Console.WriteLine($"El total es {cantidadTotalVentas}, con un descuento del 5% aplicado");
-                        }
+                             porcentajeDescuento = DescuentoMenor;
+            }
 
-                    else if (cantidadTotalVentas < 2000)
+                    else
                         {   
                             Console.WriteLine("No cumple el minimo para descuento");
-                        }
-            break;
+            }
 
-            default:
-                Console.WriteLine("Opcion invalida. Intentar nuevamente");
-                break;
+            decimal descuentoTotal = cantidadTotalVentas * porcentajeDescuento;
+            decimal subtotalConDescuento = cantidadTotalVentas - descuentoTotal;
+            Console.WriteLine($"Descuento aplicado por monto: (${descuentoTotal}) => {porcentajeDescuento * 100}%");
+            break;
         }
     }
 while (opcion != "2");
