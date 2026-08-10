@@ -10,8 +10,11 @@ Console.WriteLine($"Bienvenido, {nombreCajero}. Caja abierta");
 decimal cantidadTotalVentas = 0;
 int cantidadProductos = 0;
 string opcion;
+const decimal DescuentoMayor = 0.10m;
+const decimal DescuentoMenor = 0.10m;
 
-do 
+
+do
 {
     Console.WriteLine("Que desea hacer?");
     Console.WriteLine("1. Cargar un producto"); Console.WriteLine("2. Cerrar la venta"); Console.WriteLine("Seleccione una opcion");
@@ -34,9 +37,26 @@ do
                 break;
 
             case "2":
-                Console.WriteLine("Cerrando caja... Resumen ventas: ");
-            Console.WriteLine($"Cantidad de productos agregados {cantidadProductos}");
-            Console.WriteLine($"Total ventas {cantidadTotalVentas}");
+                    Console.WriteLine("Resumen ventas: ");
+                Console.WriteLine($"Cantidad de productos agregados {cantidadProductos}");
+                Console.WriteLine($"Subtotal de ventas {cantidadTotalVentas}");
+
+                    if (cantidadTotalVentas > 5000)
+                        {
+                            cantidadTotalVentas -= cantidadTotalVentas * DescuentoMayor;
+                            Console.WriteLine($"El total a pagar es {cantidadTotalVentas}, con un descuento del 10% aplicado");
+                        }
+
+                    else if (cantidadTotalVentas < 5000 && cantidadTotalVentas > 2000)
+                        {
+                            cantidadTotalVentas -= cantidadTotalVentas * DescuentoMenor;
+                            Console.WriteLine($"El total es {cantidadTotalVentas}, con un descuento del 5% aplicado");
+                        }
+
+                    else if (cantidadTotalVentas < 2000)
+                        {   
+                            Console.WriteLine("No cumple el minimo para descuento");
+                        }
             break;
 
             default:
