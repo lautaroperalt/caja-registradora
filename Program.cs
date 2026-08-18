@@ -1,4 +1,5 @@
-﻿Console.WriteLine("Kiosco NOB");
+﻿const string NombreKiosco = "Kiosco NOB";
+Console.WriteLine(NombreKiosco);
 
 Console.Write("Ingrese el nombre del cajero: ");
 string nombreCajero = Console.ReadLine();
@@ -136,3 +137,4 @@ string medioDePago = Console.ReadLine();
         }
     }
 while (opcion != "2");
+Console.ReadLine();
